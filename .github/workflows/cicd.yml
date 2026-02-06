@@ -7,21 +7,15 @@ jobs:
   MiprimeraAutomatizacion:
     runs-on: ubuntu-latest
     steps:
-        - name: Vamos a decir hola
-          run: echo "Hola"
-        - name: ¿Quién soy?
-          run: whoami
-        - name: ¿Dónde estoy?
-          run: lsb_release -a
-        - name: ¿Qué tengo a la vista?
-          run: ls .
-        - name: ¿Qué carpeta?
-          run: pwd
-        - name: Actualizamos repos...
-          run: sudo apt update
-        - name: Instalamos programa crítico
-          run: sudo apt install -y cowsay
-        - name: ¡Lo tengo! Vamos a ejecutarlo
-          run:
+      - name: Cargar los ficheros de mi repo
+        uses: actions/checkout@v6
+      - name: Instalar node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar el repositorio
+        run: npm install
+      - name: Build
+        run: npm run build
 
       
