@@ -19,5 +19,22 @@ jobs:
         run: npx vitest run
       - name: Build
         run: npm run build
+      - name: Start deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          HOST: ${{vars.EC2_HOST }}
+        run: |
+          echo "$PRIVATE_KEY" > clave-aws.pem
+          chmod 600 clave-aws.pem
+          ssh -o StrictHostKeyChecking=no -i clave-aws.pem ubuntu@${HOST} '
+            echo "Carpeta: $(pwd)"
+            ls -la .
+            sudo apt update
+            sudo apt install -y apache2
+            sudo systemctl enable apache2
+            sudo systemctl start apache2
+            sudo systemctl status apache2
+          '
+        
 
       
