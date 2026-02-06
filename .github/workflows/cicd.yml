@@ -41,6 +41,4 @@ jobs:
             sudo mv ~/app_deploy/* /var/www/html/
             sudo chown -R www-data:www-data /var/www/html/
             sudo rm -rf ~/app_deploy
-        
-
-      
+            '
