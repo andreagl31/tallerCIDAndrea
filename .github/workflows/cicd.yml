@@ -34,7 +34,13 @@ jobs:
             sudo systemctl enable apache2
             sudo systemctl start apache2
             sudo systemctl status apache2
+            mkdir -p ~/app_deploy
           '
+          scp -i clave-aws.pem -o StrictHostKeyChecking=no -r ./dist/* ubuntu@${HOST}:~/app_deploy
+          ssh -o StrictHostKeyChecking=no -i clave-aws.pem ubuntu@${HOST} '
+            sudo mv ~/app_deploy/* /var/www/html/
+            sudo chown -R www-data:www-data /var/www/html/
+            sudo rm -rf ~/app_deploy
         
 
       
