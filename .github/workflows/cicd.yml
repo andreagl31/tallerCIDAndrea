@@ -4,7 +4,7 @@ run-name: Estamos ejecutando acciones automática.
 on: [push]
 
 jobs: 
-  MiprimeraAutomatización:
+  MiprimeraAutomatizacion:
     runs-on: ubuntu-latest
     steps:
         - name: Vamos a decir hola
